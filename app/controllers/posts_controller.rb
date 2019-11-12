@@ -14,6 +14,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def upvote
+    @post = Post.find(params[:id])
+    @post.upvote_by current_user
+    redirect_to posts_url
+  end
+
+  def downvote
+    @post = Post.find(params[:id])
+    @post.downvote_by current_user
+    redirect_to posts_url
+  end
+
   def edit
      @previous_wall_id = params['previous_wall_id']
     set_post
